@@ -1,0 +1,47 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main_banner_1_9iDKTj": {
+      "type": "main-banner-1",
+      "blocks": {
+        "banner_text_bCFT9e": {
+          "type": "banner_text",
+          "settings": {
+            "label": "sadda",
+            "fs": 100,
+            "fw": "400"
+          }
+        },
+        "banner_text_qAcVGz": {
+          "type": "banner_text",
+          "settings": {
+            "label": "",
+            "fs": 16,
+            "fw": "400"
+          }
+        }
+      },
+      "block_order": [
+        "banner_text_bCFT9e",
+        "banner_text_qAcVGz"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/sleeve.png",
+        "image_height": "100",
+        "p-l-item": 95,
+        "p-top": 10
+      }
+    }
+  },
+  "order": [
+    "main_banner_1_9iDKTj"
+  ]
+}

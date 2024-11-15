@@ -1,0 +1,38 @@
+{{ 'component-collection-list.css' | asset_url | stylesheet_tag }}
+{{ 'base.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="container-c-l page-width-desktop page-width"
+  style="--background-color: {{section.settings.color-bgr}}"
+>
+  <div class="background">
+    {% content_for "blocks" %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Features Collection List",
+  "settings": [
+    {
+      "type": "color",
+      "id": "color-bgr",
+      "label": "Color Background",
+      "default": "#F0F0F0"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text-block"
+    },
+    {
+      "type": "image-group"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features Collection List"
+    }
+  ]
+}
+{% endschema %}

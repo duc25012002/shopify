@@ -1,0 +1,5 @@
+[environments.env1]
+theme       = "145196646626"
+store       = "hoang-duc-25"
+password    = "shptka_83f2ddf337a945e93d1c29655379e9af"
+ignore      =  ["config/settings_data.json", "templates/index.json", "assets/colors.css", "templates/*.json", "sections/*.json"]

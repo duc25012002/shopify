@@ -1,0 +1,67 @@
+<div style="display: flex; flex-wrap: wrap; background-color: {{  section.settings.color_bgr }}">
+  {% for block in section.blocks %}
+    <div class="img-banner">
+      {{
+        block.settings.image
+        | image_url: width: block.settings.image.width
+        | image_tag:
+          widths: '100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000',
+          alt: 'This is a main banner image',
+          sizes: '100vw',
+          class: 'img',
+          loading: 'eager'
+      }}
+    </div>
+  {% endfor %}
+</div>
+
+<style>
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  .img-banner {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Feature Collection 2",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "color-bgr",
+      "label": "Color Background",
+      "default": "#F0F0F0"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_block_2",
+      "name": "Image Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature Collection 2",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
