@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="/assets/flickity.min.css">
+<script src="/assets/flickity.min.js" defer></script>
+{% schema %}
+{
+  "name": "Slide",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Slide",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
+
+<h1>Flickity - wrapAround</h1>
+<div
+  class="carousel"
+  data-flickity='{ "wrapAround": true }'
+>
+  <div class="carousel-cell"></div>
+  <div class="carousel-cell"></div>
+  <div class="carousel-cell"></div>
+  <div class="carousel-cell"></div>
+  <div class="carousel-cell"></div>
+</div>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: sans-serif;
+  }
+
+  .carousel {
+    background: #eee;
+  }
+
+  .carousel-cell {
+    width: 66%;
+    height: 200px;
+    margin-right: 10px;
+    background: #8c8;
+    border-radius: 5px;
+    counter-increment: carousel-cell;
+  }
+
+  /* cell number */
+  .carousel-cell:before {
+    display: block;
+    text-align: center;
+    content: counter(carousel-cell);
+    line-height: 200px;
+    font-size: 80px;
+    color: white;
+  }
+</style>
