@@ -1,0 +1,145 @@
+{% schema %}
+{
+  "name": "Input content",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text_alignment",
+      "id": "text_align",
+      "label": "Text alignment"
+    },
+    {
+      "type": "select",
+      "id": "tag",
+      "default": "p",
+      "label": "Tag",
+      "info": "Custom size and font weight must be active width \"div\" tag.",
+      "options": [
+        {
+          "value": "h1",
+          "label": "h1"
+        },
+        {
+          "value": "h2",
+          "label": "h2"
+        },
+        {
+          "value": "h3",
+          "label": "h3"
+        },
+        {
+          "value": "h4",
+          "label": "h4"
+        },
+        {
+          "value": "h5",
+          "label": "h5"
+        },
+        {
+          "value": "h6",
+          "label": "h6"
+        },
+        {
+          "value": "p",
+          "label": "p"
+        },
+        {
+          "value": "span",
+          "label": "span"
+        },
+        {
+          "value": "div",
+          "label": "Custom"
+        }
+      ]
+    },
+    
+    {
+      "type": "range",
+      "id": "f_s",
+      "label": "Text Size",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "f_w",
+      "label": "Font Weight",
+      "min": 100,
+      "max": 800,
+      "step": 100,
+      "default": 400
+    },
+    {
+      "type": "color",
+      "id": "t_c",
+      "label": "Text Color"
+    },
+    {
+      "type": "range",
+      "id": "pos_t",
+      "label": "Position text vertical",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "default": 10,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "pos_l",
+      "label": "Position text horizontal",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "default": 10,
+      "unit": "%"
+    },
+    {
+      "type": "checkbox",
+      "id": "text_center",
+      "label": "Text center position",
+      "default": false
+
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text"
+    }
+  ]
+}
+{% endschema %}
+
+<{{ block.settings.tag }} class="text-{{ block.id }} d-flex position-absolute text-{{ block.settings.text_align }}">
+  {{ block.settings.text }}
+</{{ block.settings.tag }}>
+
+<style>
+  .text-{{ block.id }} {
+    {%- if block.settings.text_center -%}
+      left: 50%;
+      transform: translate(-50%);
+    {%- endif -%}
+
+    
+    {%- if block.settings.tag == "div"  -%}
+      font-size: {{ block.settings.f_s }}px;
+      font-weight: {{ block.settings.f_w }};
+    {%- endif -%}
+      z-index: 1;
+      top: {{ block.settings.pos_t }}%;
+      left: {{ block.settings.pos_l }}%;
+      color: {{ block.settings.t_c }};
+  }
+</style>
+
+

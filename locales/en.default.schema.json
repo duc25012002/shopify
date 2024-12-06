@@ -456,6 +456,18 @@
         "info": "Standard-styled cards have no borders when an image shape is active."
       }
     },
+    "slide": {
+      "settings": {
+        "header": "Slider configs",
+        "image_size": "Height of the image desktop",
+        "show_dots": "Show indicator dots",
+        "show_button_navigator": "Show button navigator",
+        "auto_play": {
+          "label": "Auto play",
+          "info": "Set to 0 to disable auto play. Auto play active with miliseconds."
+        }
+      },
+    },
     "announcement-bar": {
       "name": "Announcement bar",
       "settings": {

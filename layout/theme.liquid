@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
+  
 
 
     {%- if settings.favicon != blank -%}
@@ -298,6 +299,10 @@
       }
     </script>
 
+    <link href="{{ 'bootstrap.min.css' | asset_url }}" rel="stylesheet">
+    <script src="{{ 'bootstrap.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'flickity.min.js' | asset_url }}" defer></script>
+    
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">

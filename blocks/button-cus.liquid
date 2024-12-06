@@ -1,0 +1,98 @@
+{% schema %}
+{
+  "name": "Button",
+  "class": "button position-absolute",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Button Text",
+      "id": "btn_text",
+      "default": "Button"
+    },
+    {
+      "type": "color",
+      "label": "Button text color",
+      "id": "btn_color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "label": "Button Width",
+      "id": "btn_width",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "label": "Button Height",
+      "id": "btn_height",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "pos_t",
+      "label": "Position text vertical",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "default": 10,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "pos_l",
+      "label": "Position text horizontal",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "default": 10,
+      "unit": "%"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_center",
+      "label": "Button center position",
+      "default": false
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Button",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
+
+<a href="{{ block.settings.product }}"><div>{{ block.settings.btn_text }}</div></a>
+
+<style>
+  .button {
+    width: {{ block.settings.btn_width | plus: 0 | divided_by: 16 }}rem;
+    height: {{ block.settings.btn_height | plus: 0 | divided_by: 16 }}rem;
+    top: {{ block.settings.pos_t }}%;
+ 
+    {%- if block.settings.button_center -%}
+        left: 50%;
+        transform: translate(-50%);
+      {%- else -%}
+        left: {{ block.settings.pos_l }}%;
+    {%- endif -%}
+  }
+  .button a {
+    text-decoration: none;
+    color: {{ block.settings.btn_color }};
+  }
+</style>

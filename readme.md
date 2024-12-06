@@ -1,0 +1,1 @@
+Run project: sudo shopify theme dev --environment env1 --theme-editor-sync --port=9290

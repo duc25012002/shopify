@@ -1,60 +1,168 @@
-<link rel="stylesheet" href="/assets/flickity.min.css">
-<script src="/assets/flickity.min.js" defer></script>
+<link href="{{ 'flickity.min.css' | asset_url }}" rel="stylesheet">
+
 {% schema %}
 {
   "name": "Slide",
   "tag": "section",
-  "settings": [],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.slide.settings.header"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "default": true,
+      "label": "t:sections.slide.settings.show_dots"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button_navigator",
+      "default": true,
+      "label": "t:sections.slide.settings.show_button_navigator"
+    },
+    {
+      "type": "text",
+      "id": "auto_play",
+      "label": "t:sections.slide.settings.auto_play.label",
+      "default": "0",
+      "info": "t:sections.slide.settings.auto_play.info"
+    },
+    {
+      "type": "header",
+      "content": "Desktop"
+    },
+    {
+      "type": "number",
+      "id": "size",
+      "label": "t:sections.slide.settings.image_size",
+      "default": 1920
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "number",
+      "id": "m_height",
+      "label": "Height of the image mobile",
+      "default": 800
+    },
+    {
+      "type": "header",
+      "content": "2. Spacing setting"
+    },
+    {
+      "type": "header",
+      "content": "Desktop"
+    },
+    {
+      "type": "text",
+      "id": "d_margin",
+      "label": "Margin",
+      "default": "0px, 0px, 0px, 0px",
+      "info": "top, right, bottom, left"
+    },
+    {
+      "type": "text",
+      "id": "d_padding",
+      "label": "padding",
+      "default": "0px, 0px, 0px, 0px",
+      "info": "top, right, bottom, left"
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "text",
+      "id": "m_margin",
+      "label": "Margin",
+      "default": "0px, 0px, 0px, 0px",
+      "info": "top, right, bottom, left"
+    },
+    {
+      "type": "text",
+      "id": "m_padding",
+      "label": "Padding",
+      "default": "0px, 0px, 0px, 0px",
+      "info": "top, right, bottom, left"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image-block"
+    }
+  ],
   "presets": [
     {
       "name": "Slide",
+      "blocks": [
+        {
+          "type": "image-block"
+        },
+        {
+          "type": "image-block"
+        },
+        {
+          "type": "image-block"
+        }
+      ],
       "settings": {}
     }
   ]
 }
 {% endschema %}
 
-<h1>Flickity - wrapAround</h1>
 <div
-  class="carousel"
-  data-flickity='{ "wrapAround": true }'
+  class="slide-{{ section.id }} carousel position-relative"
+  data-flickity='
+    { "fullscreen": true ,
+    "wrapAround": true,
+    "contain": true,
+    "autoPlay": {{ section.settings.auto_play }},
+    "resize": true,
+    "cellAlign": "center"}
+  '
 >
-  <div class="carousel-cell"></div>
-  <div class="carousel-cell"></div>
-  <div class="carousel-cell"></div>
-  <div class="carousel-cell"></div>
-  <div class="carousel-cell"></div>
+  {% content_for 'blocks' %}
 </div>
 
 <style>
-  * {
-    box-sizing: border-box;
-  }
+    .carousel {
+      width: 100%;
+      margin: 0 auto;
 
-  body {
-    font-family: sans-serif;
-  }
+    }
+    .carousel-cell {
+      width: 100%;
+      position: relative;
+      height: {{section.settings.size}}px;
+      margin: {{ section.settings.d_margin | uniq | join: ', ' | remove: ',' }};
+      padding: {{ section.settings.d_padding | uniq | join: ', ' | remove: ',' }};
+    }
+    .flickity-page-dots {
+        {%- if section.settings.show_dots != true -%}
+          opacity: 0;
+          {% else %}
+          opacity: 1;
+        {%- endif -%}
+      }
+    .flickity-button {
+        {%- if section.settings.show_button_navigator != true -%}
+          opacity: 0;
+          {% else %}
+          opacity: 1;
+        {%- endif -%}
+      }
 
-  .carousel {
-    background: #eee;
-  }
-
-  .carousel-cell {
-    width: 66%;
-    height: 200px;
-    margin-right: 10px;
-    background: #8c8;
-    border-radius: 5px;
-    counter-increment: carousel-cell;
-  }
-
-  /* cell number */
-  .carousel-cell:before {
-    display: block;
-    text-align: center;
-    content: counter(carousel-cell);
-    line-height: 200px;
-    font-size: 80px;
-    color: white;
-  }
+      @media (max-width: 767px) {
+        .carousel-cell {
+          width: 100%;
+          height: {{section.settings.m_height}}px;
+          margin: {{ section.settings.m_margin | uniq | join: ', ' | remove: ',' }};
+          padding: {{ section.settings.m_padding | uniq | join: ', ' | remove: ',' }};
+          counter-increment: carousel-cell;
+        }
+      }
 </style>

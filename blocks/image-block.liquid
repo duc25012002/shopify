@@ -1,125 +1,8 @@
-{{ 'component-collection-list.css' | asset_url | stylesheet_tag }}
-
-{% if block.settings.image_picker %}
-  <div
-    style="flex: {{block.settings.percent_item_setting}}; flex-shrink: 0; --border-image: {{ block.settings.b_r_image | divided_by:16 }}rem; position: relative;"
-    class="container-img"
-  >
-    {{
-      block.settings.image_picker
-      | image_url: width: section.settings.image.width
-      | image_tag:
-        widths: '100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000',
-        alt: 'This is a main banner image',
-        sizes: '100vw',
-        class: 'img-item',
-        loading: 'eager'
-    }}
-    <div
-      class="img-title"
-      style="
-        top: {{  block.settings.p_t_title}}%;
-        left: {{  block.settings.p_l_title}}%;
-        font-weight: {{  block.settings.f_w_title | plus: 0}};
-      "
-    >
-      {{ block.settings.title }}
-    </div>
-  </div>
-{% endif %}
-
-<style>
-  .img-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    object-fit: cover;
-  }
-  .img-title {
-    position: absolute;
-  }
-</style>
-
 {% schema %}
 {
   "name": "Image Block",
   "tag": null,
   "settings": [
-    {
-      "type": "header",
-      "content": "Header setting"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Title"
-    },
-    {
-      "type": "range",
-      "id": "p_t_title",
-      "label": "Position top",
-      "min": 0,
-      "max": 100,
-      "default": 10,
-      "step": 1,
-      "unit": "%"
-    },
-    {
-      "type": "range",
-      "id": "p_l_title",
-      "label": "Position left",
-      "min": 0,
-      "max": 100,
-      "default": 10,
-      "step": 1,
-      "unit": "%"
-    },
-    {
-      "type": "select",
-      "id": "f_w_title",
-      "label": "Font Weight",
-      "default": "400",
-      "options": [
-        {
-          "label": "100",
-          "value": "100"
-        },
-        {
-          "label": "200",
-          "value": "200"
-        },
-        {
-          "label": "300",
-          "value": "300"
-        },
-        {
-          "label": "400",
-          "value": "400"
-        },
-        {
-          "label": "500",
-          "value": "500"
-        },
-        {
-          "label": "600",
-          "value": "600"
-        },
-        {
-          "label": "700",
-          "value": "700"
-        },
-        {
-          "label": "800",
-          "value": "800"
-        },
-        {
-          "label": "900",
-          "value": "900"
-        }
-      ]
-
-    },
     {
       "type": "header",
       "content": "Image setting"
@@ -129,29 +12,39 @@
       "id": "image_picker",
       "label": "Pick Your Image"
     },
+  ],
+  "blocks": [
     {
-      "type": "range",
-      "id": "percent_item_setting",
-      "label": "Person Image",
-      "min": 0,
-      "max": 100,
-      "default": 10,
-      "unit": "%"
+      "type": "text"
     },
     {
-      "type": "range",
-      "id": "b_r_image",
-      "label": "Border Image",
-      "min": 0,
-      "max": 100,
-      "default": 1,
-      "unit": "px"
+      "type": "button-cus"
     }
   ],
   "presets": [
     {
-      "name": "Image Block"
+      "name": "Image",
+      "settings": {}
     }
   ]
 }
 {% endschema %}
+
+<div class="carousel-cell">
+  {% content_for 'blocks' %}
+  {% if block.settings.image_picker %}
+    {{
+      block.settings.image_picker
+      | image_url: width: block.settings.image_picker.width
+      | image_tag:
+        widths: '100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000',
+        sizes: '100vw',
+        class: 'img-item w-100 h-100 object-fit-cover top-0 start-0',
+        loading: 'eager'
+    -}}
+  {%- else %}
+    <div class="img-item w-100 h-100 object-fit-cover top-0 start-0">
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {% endif %}
+</div>
