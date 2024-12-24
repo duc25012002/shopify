@@ -6,7 +6,7 @@
 
   <div class="carousel" data-autoplay="{{ section.settings.autoplay_speed }}">
     {%- for block in section.blocks -%}
-      <div class="carousel-cell" {{ block.shopify_attributes }}>
+      <div class="ctf-carousel-cell" {{ block.shopify_attributes }}>
         {%- if block.settings.image != blank -%}
           {{ block.settings.image | image_url: width: 800 | image_tag: 
             loading: 'lazy',
@@ -36,7 +36,7 @@
   background: #eee;
 }
 
-.carousel-cell {
+.ctf-carousel-cell {
   width: 66%;
   height: auto;
   margin-right: 10px;

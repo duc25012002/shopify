@@ -1,0 +1,171 @@
+{% schema %}
+{
+  "name": "Count Down",
+  "class": "ctf_count_down_container",
+  "settings": [
+    {
+      "type": "text",
+      "id": "ctf_year_start",
+      "label": "Year"
+    },
+    {
+      "type": "text",
+      "id": "ctf_month_start",
+      "label": "Month"
+    },
+    {
+      "type": "text",
+      "id": "ctf_day_start",
+      "label": "Day"
+    },
+    {
+      "type": "text",
+      "id": "ctf_hours_start",
+      "label": "Hours"
+    },
+    {
+      "type": "text",
+      "id": "ctf_minutes_start",
+      "label": "Minutes"
+    },
+    {
+      "type": "select",
+      "id": "ctf_style_count_down",
+      "label": "Style Count Down",
+      "options": [
+        {
+          "value": "ctf_rounded",
+          "label": "Rounded"
+        },
+        {
+          "value": "ctf_square",
+          "label": "Square"
+        },
+        {
+          "value": "ctf_none",
+          "label": "None"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "ctf_postion_top",
+      "label": "Position Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 10,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "ctf_postion_left",
+      "label": "Position Left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 10,
+      "unit": "%"
+    },
+    {
+      "type": "color_scheme",
+      "id": "ctf_color_scheme",
+      "label": "Color Scheme"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Count Down",
+      "settings": {
+        "ctf_year_start": "2026",
+        "ctf_month_start": "10",
+        "ctf_day_start": "10",
+        "ctf_hours_start": "10",
+        "ctf_minutes_start": "10",
+        "ctf_postion_top": 50,
+        "ctf_postion_left": 10
+      }
+    }
+  ]
+}
+{% endschema %}
+
+<div class="ctf-count-down position-absolute color-{{ block.settings.ctf_color_scheme }}">
+  <span class="ctf-count-down__day"></span>
+  <span class="ctf-separation">-</span>
+  <span class="ctf-count-down__hours"></span>
+  <span class="ctf-separation">-</span>
+  <span class="ctf-count-down__minutes"></span>
+  <span class="ctf-separation">-</span>
+  <span class="ctf-count-down__seconds"></span>
+</div>
+
+<style>
+  .ctf-count-down {
+    display: flex;
+    gap: 10px;
+    top: {{ block.settings.ctf_postion_top }}%;
+    left: {{ block.settings.ctf_postion_left }}%;
+    border: .1px dashed rgb(var(--color-border));
+    background-color: rgb(var(--second-background-color));
+  }
+  .ctf-count-down .ctf-separation {
+    color: rgb(var(--color-background));
+    display: flex;
+    align-items: center;
+  }
+
+  .ctf-count-down .ctf-count-down__day,
+  .ctf-count-down .ctf-count-down__hours,
+  .ctf-count-down .ctf-count-down__minutes,
+  .ctf-count-down .ctf-count-down__seconds {
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 10px;
+    z-index: 1;
+    color: rgb(var(--heading-color));
+    background-color: rgb(var(--color-background));
+    {%- if block.settings.ctf_style_count_down == "ctf_rounded" -%}
+      border-radius: 50%;
+    {%- elsif block.settings.ctf_style_count_down == "ctf_square" -%}
+      border-radius: 0%;
+    {%- else -%}
+        background-color: transparent;
+    {%- endif -%}
+  }
+</style>
+
+<script>
+  var countDownDate = new Date(
+    {{ block.settings.ctf_year_start }},
+    {{ block.settings.ctf_month_start | minus: 1 }},
+    {{ block.settings.ctf_day_start }},
+    {{ block.settings.ctf_hours_start }},
+    {{ block.settings.ctf_minutes_start }},
+    0
+  ).getTime();
+  var x = setInterval(function () {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementsByClassName('ctf-count-down__day')[0].innerHTML = days + 'd ';
+    document.getElementsByClassName('ctf-count-down__hours')[0].innerHTML =  hours + 'h ';
+    document.getElementsByClassName('ctf-count-down__minutes')[0].innerHTML =  minutes + 'm ';
+    document.getElementsByClassName('ctf-count-down__seconds')[0].innerHTML =  seconds + 's ';
+
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementsByClassName('ctf-count-down').innerHTML = 'EXPIRED';
+    }
+  }, 1000);
+</script>

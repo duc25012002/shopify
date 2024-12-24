@@ -6,7 +6,7 @@
     {
       "type": "text",
       "label": "Button Text",
-      "id": "btn_text",
+      "id": "ctf_btn_text",
       "default": "Button"
     },
     {
@@ -18,7 +18,7 @@
     {
       "type": "range",
       "label": "Button Width",
-      "id": "btn_width",
+      "id": "ctf_btn_width",
       "min": 0,
       "max": 200,
       "step": 10,
@@ -76,11 +76,11 @@
 }
 {% endschema %}
 
-<a href="{{ block.settings.product }}"><div>{{ block.settings.btn_text }}</div></a>
+<a href="{{ block.settings.product }}"><div>{{ block.settings.ctf_btn_text }}</div></a>
 
 <style>
   .button {
-    width: {{ block.settings.btn_width | plus: 0 | divided_by: 16 }}rem;
+    width: {{ block.settings.ctf_btn_width | plus: 0 | divided_by: 16 }}rem;
     height: {{ block.settings.btn_height | plus: 0 | divided_by: 16 }}rem;
     top: {{ block.settings.pos_t }}%;
  

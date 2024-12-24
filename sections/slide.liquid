@@ -89,23 +89,19 @@
       "info": "top, right, bottom, left"
     }
   ],
-  "blocks": [
-    {
-      "type": "image-block"
-    }
-  ],
+  "blocks": [{ "type": "ctf_image_block" }],
   "presets": [
     {
       "name": "Slide",
       "blocks": [
         {
-          "type": "image-block"
+          "type": "ctf_image_block"
         },
         {
-          "type": "image-block"
+          "type": "ctf_image_block"
         },
         {
-          "type": "image-block"
+          "type": "ctf_image_block"
         }
       ],
       "settings": {}
@@ -129,40 +125,39 @@
 </div>
 
 <style>
-    .carousel {
-      width: 100%;
-      margin: 0 auto;
+  .carousel {
+    width: 100%;
+    margin: 0 auto;
 
+  }
+  .ctf-carousel-cell {
+    width: 100%;
+    position: relative;
+    height: {{section.settings.size}}px;
+    margin: {{ section.settings.d_margin | uniq | join: ', ' | remove: ',' }};
+    padding: {{ section.settings.d_padding | uniq | join: ', ' | remove: ',' }};
+  }
+  .flickity-page-dots {
+      {%- if section.settings.show_dots != true -%}
+        opacity: 0;
+        {% else %}
+        opacity: 1;
+      {%- endif -%}
     }
-    .carousel-cell {
-      width: 100%;
-      position: relative;
-      height: {{section.settings.size}}px;
-      margin: {{ section.settings.d_margin | uniq | join: ', ' | remove: ',' }};
-      padding: {{ section.settings.d_padding | uniq | join: ', ' | remove: ',' }};
+  .flickity-button {
+      {%- if section.settings.show_button_navigator != true -%}
+        opacity: 0;
+        {% else %}
+        opacity: 1;
+      {%- endif -%}
     }
-    .flickity-page-dots {
-        {%- if section.settings.show_dots != true -%}
-          opacity: 0;
-          {% else %}
-          opacity: 1;
-        {%- endif -%}
-      }
-    .flickity-button {
-        {%- if section.settings.show_button_navigator != true -%}
-          opacity: 0;
-          {% else %}
-          opacity: 1;
-        {%- endif -%}
-      }
 
-      @media (max-width: 767px) {
-        .carousel-cell {
-          width: 100%;
-          height: {{section.settings.m_height}}px;
-          margin: {{ section.settings.m_margin | uniq | join: ', ' | remove: ',' }};
-          padding: {{ section.settings.m_padding | uniq | join: ', ' | remove: ',' }};
-          counter-increment: carousel-cell;
-        }
+    @media (max-width: 767px) {
+      .ctf-carousel-cell {
+        width: 100%;
+        height: {{section.settings.m_height}}px;
+        margin: {{ section.settings.m_margin | uniq | join: ', ' | remove: ',' }};
+        padding: {{ section.settings.m_padding | uniq | join: ', ' | remove: ',' }};
       }
+    }
 </style>

@@ -41,9 +41,19 @@
         "id": "color_schemes",
         "definition": [
           {
+            "type": "header",
+            "content": "Background color"
+          },
+          {
             "type": "color",
             "id": "background",
             "label": "t:settings_schema.colors.settings.background.label",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "second_background_color",
+            "label": "Second background",
             "default": "#FFFFFF"
           },
           {
@@ -53,10 +63,35 @@
             "info": "t:settings_schema.colors.settings.background_gradient.info"
           },
           {
+            "type": "header",
+            "content": "Text color"
+          },
+          {
             "type": "color",
-            "id": "text",
-            "label": "t:settings_schema.colors.settings.text.label",
+            "id": "heading_color",
+            "label": "Heading color",
             "default": "#121212"
+          },
+
+          {
+            "type": "color",
+            "id": "sub_heading_color",
+            "label": "Sub heading color",
+            "default": "#121212"
+          },
+          {
+            "type": "header",
+            "content": "Border color"
+          },
+          {
+            "type": "color",
+            "id": "border_color",
+            "label": "Border color",
+            "default": "#121212"
+          },
+          {
+            "type": "header",
+            "content": "Button color"
           },
           {
             "type": "color",
@@ -84,13 +119,13 @@
           }
         ],
         "role": {
-          "text": "text",
+          "text": "heading_color",
           "background": {
             "solid": "background",
             "gradient": "background_gradient"
           },
           "links": "secondary_button_label",
-          "icons": "text",
+          "icons": "heading_color",
           "primary_button": "button",
           "on_primary_button": "button_label",
           "primary_button_border": "button",
