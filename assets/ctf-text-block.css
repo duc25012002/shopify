@@ -1,0 +1,8 @@
+.ctf-text-block {
+    top: var(--ctf-text-position-top);
+    left: var(--ctf-text-position-left);
+    text-align: var(--ctf-text-align);
+    font-size: var(--ctf-font-size);
+    font-weight: var(--ctf-font-weight);
+    color: var(--ctf-text-color);
+}

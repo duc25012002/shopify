@@ -1,0 +1,33 @@
+.ctf-slide-section .carousel {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.ctf-slide-section .ctf-carousel-cell {
+    width: 100%;
+    position: relative;
+    height: var(--ctf-height-carousel);
+    margin: var(--ctf-margin-carousel);
+    padding: var(--ctf-padding-carousel);
+}
+
+.ctf-slide-section .flickity-button {
+    opacity: var(--ctf-show-button-navigator);
+}
+
+.ctf-slide-section .ctf-img-item {
+    z-index: -1;
+}
+
+.ctf-slide-section .flickity-page-dots {
+    opacity: var(--ctf-show-dot);
+}
+
+@media (max-width: 767px) {
+    .ctf-slide-section.ctf-carousel-cell {
+      width: 100%;
+      height: var(--ctf-mobile-height);
+      margin: var(--ctf-margin-carousel-mobile);
+      padding: var(--ctf-padding-carousel-mobile);
+    }
+  }
